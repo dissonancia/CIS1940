@@ -1,7 +1,6 @@
 module Hanoi where
 
 type Peg  = String
-type Move = (Peg, Peg)
 
 hanoi n a b c = hanoiAux n a b c []
   where
