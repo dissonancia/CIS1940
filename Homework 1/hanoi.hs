@@ -1,7 +1,9 @@
 module Hanoi where
 
 type Peg  = String
+type Move = (Peg, Peg)
 
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
 hanoi n a b c = hanoiAux n a b c []
   where
     hanoiAux 0 _ _ _ = id
