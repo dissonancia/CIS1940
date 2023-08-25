@@ -1,4 +1,4 @@
-module Homework1 where
+module Validate where
 
 toDigits :: Integer -> [Integer]
 toDigits n
