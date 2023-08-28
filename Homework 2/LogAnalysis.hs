@@ -1,5 +1,4 @@
 {-# OPTIONS_GHC -Wall #-}
-
 module LogAnalysis where
 
 import Log
@@ -35,9 +34,7 @@ inOrder (Node left logMsg right) = inOrder left ++ [logMsg] ++ inOrder right
 
 whatWentWrong :: [LogMessage] -> [String]
 whatWentWrong [] = []
-whatWentWrong xs =
-                let filterErrorLog logMsg = case logMsg of
-                      LogMessage (Error severity) _ _ -> severity >= 50
-                      _                               -> False
-                    mapErrorLog (LogMessage _ _ msg) = msg
-                in map mapErrorLog $ inOrder $ build $ filter filterErrorLog xs
+whatWentWrong xs = map mapErrorLog $ inOrder $ build $ filter filterErrorLog xs
+  where filterErrorLog (LogMessage (Error severity) _ _) = severity >= 50
+        filterErrorLog _                                 = False
+        mapErrorLog (LogMessage _ _ msg)                 = msg
